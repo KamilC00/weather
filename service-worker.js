@@ -1,21 +1,21 @@
 const CACHE_NAME = 'weather-app-cache-v1';
 const STATIC_ASSETS = [
-  '/',
-  '/index.html',
-  '/locations.html',
-  '/settings.html',
-  '/css/style.css',
-  '/js/app.js',
-  '/js/weather.js',
-  '/js/locations.js',
-  '/js/settings.js',
-  '/manifest.json',
-  '/images/favicon-16x16.png',
-  '/images/favicon-32x32.png',
-  '/images/apple-touch-icon.png',
-  '/images/favicon.ico',
-  '/images/icon-192x192.png',
-  '/images/icon-512x512.png'
+  '/weather/',
+  '/weather/index.html',
+  '/weather/locations.html',
+  '/weather/settings.html',
+  '/weather/css/style.css',
+  '/weather/js/app.js',
+  '/weather/js/weather.js',
+  '/weather/js/locations.js',
+  '/weather/js/settings.js',
+  '/weather/manifest.json',
+  '/weather/images/favicon-16x16.png',
+  '/weather/images/favicon-32x32.png',
+  '/weather/images/apple-touch-icon.png',
+  '/weather/images/favicon.ico',
+  '/weather/images/icon-192x192.png',
+  '/weather/images/icon-512x512.png'
 ];
 
 // Instalacja Service Workera
