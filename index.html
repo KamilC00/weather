@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="icon" type="images/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="icon" type="images/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="theme-color" content="#3498db">
+</head>
+<body>
+    <div id="app">
+        <nav class="navbar">
+            <ul>
+                <li class="active"><a href="index.html">Pogoda</a></li>
+                <li><a href="locations.html">Lokalizacje</a></li>
+                <li><a href="settings.html">Ustawienia</a></li>
+            </ul>
+            <div class="theme-toggle">
+                <button id="theme-button">🌙</button>
+            </div>
+        </nav>
+
+        <main>
+            <!-- Jeden wspólny kontener na oba elementy -->
+            <div class="weather-container">
+                <!-- Lewa strona - aktualna pogoda -->
+                <div id="current-weather" class="weather-column">
+                    <h2>Aktualna pogoda</h2>
+                    <div class="loading">Pobieranie danych...</div>
+                </div>
+                
+                <!-- Prawa strona - prognoza na 5 dni -->
+                <div id="forecast-weather" class="weather-column">
+                    <h2>Prognoza na 5 dni</h2>
+                    <div class="loading">Pobieranie prognozy...</div>
+                    <div class="forecast-days-container"></div>
+                </div>
+            </div>
+
+            <h2>Ulubione lokalizacje</h2>
+            <div id="favorite-locations" class="locations-grid">
+                <!-- Tu będą wyświetlane ulubione lokalizacje -->
+            </div>
+        </main>
+
+        <div id="offline-message" class="offline-alert hidden">
+            Jesteś offline. Dane pogodowe mogą być nieaktualne.
+        </div>
+    </div>
+
+    <!-- Przed twoimi skryptami -->
+    <!-- Umieść skrypt z inicjalizacją bazy danych jako pierwszy -->
+    <script src="https://cdn.jsdelivr.net/npm/idb@7/build/umd.js"></script>
+    <script src="js/app.js"></script> <!-- Zawiera initDatabase() -->
+    <script src="js/weather.js"></script>
+    <script src="js/locations.js"></script> <!-- Wykorzystuje initDatabase() -->
+    <script>
+        // Rejestracja Service Workera
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('Service Worker zarejestrowany', registration);
+                    })
+                    .catch(error => {
+                        console.log('Błąd rejestracji Service Workera:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

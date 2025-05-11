@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ustawienia - Weather App</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="theme-color" content="#3498db">
+</head>
+<body>
+    <div id="app">
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Pogoda</a></li>
+                <li><a href="locations.html">Lokalizacje</a></li>
+                <li class="active"><a href="settings.html">Ustawienia</a></li>
+            </ul>
+            <div class="theme-toggle">
+                <button id="theme-button">🌙</button>
+            </div>
+        </nav>
+
+        <main>
+            <h1>Ustawienia</h1>
+            <p>Zarządzaj ustawieniami aplikacji.</p>
+            <div class="settings-card">
+                <h2>Zarządzanie danymi</h2>
+                <div class="settings-actions">
+                    <button id="clear-cache" class="btn warning">Wyczyść cache</button>
+                    <button id="clear-favorites" class="btn warning">Wyczyść ulubione lokalizacje</button>
+                </div>
+            </div>
+
+            <div class="settings-card">
+                <h2>Wygląd</h2>
+                <div class="settings-actions theme-settings">
+                    <button id="theme-light" class="btn">Jasny motyw</button>
+                    <button id="theme-dark" class="btn">Ciemny motyw</button>
+                    <button id="theme-system" class="btn">Ustawienia systemowe</button>
+                </div>
+            </div>
+
+            <div class="settings-card">
+                <h2>O aplikacji</h2>
+                <p>Weather App v1.0</p>
+                <p>Przechowywane dane: <span id="storage-usage">Obliczanie...</span></p>
+            </div>
+        </main>
+
+        <div id="offline-message" class="offline-alert hidden">
+            Jesteś offline. Niektóre funkcje mogą być niedostępne.
+        </div>
+    </div>
+
+    <!-- Dodaj bibliotekę IDB -->
+    <script src="https://cdn.jsdelivr.net/npm/idb@7/build/umd.js"></script>
+    
+    <!-- Skrypty aplikacji w odpowiedniej kolejności -->
+    <script src="js/app.js"></script>
+    <script src="js/settings.js"></script>
+</body>
+</html>

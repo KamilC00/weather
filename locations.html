@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zarządzanie lokalizacjami - Weather App</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="theme-color" content="#3498db">
+</head>
+<body>
+    <div id="app">
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Pogoda</a></li>
+                <li class="active"><a href="locations.html">Lokalizacje</a></li>
+                <li><a href="settings.html">Ustawienia</a></li>
+            </ul>
+            <div class="theme-toggle">
+                <button id="theme-button">🌙</button>
+            </div>
+        </nav>
+
+        <main>
+            <h1>Zarządzanie lokalizacjami</h1>
+            
+            <form id="add-location-form">
+                <h2>Dodaj nową lokalizację</h2>
+                <div class="form-group">
+                    <label for="location-name">Nazwa lokalizacji:</label>
+                    <input type="text" id="location-name" required placeholder="np. Warszawa">
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn primary">Dodaj</button>
+                </div>
+            </form>
+
+            <div class="saved-locations">
+                <h2>Zapisane lokalizacje</h2>
+                <div id="locations-list">
+                    <!-- Tu będą wyświetlane zapisane lokalizacje -->
+                </div>
+            </div>
+        </main>
+
+        <div id="offline-message" class="offline-alert hidden">
+            Jesteś offline. Niektóre funkcje mogą być niedostępne.
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/idb@7/build/umd.js"></script>
+    <script src="js/database.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/locations.js"></script>
+    <script>
+        document.querySelector('.add-to-favorites-button').addEventListener('click', async () => {
+          try {
+            // Upewnij się, że baza danych jest dostępna
+            await initDatabase();
+            
+            const location = {
+              name: document.getElementById('location-name').value,
+              lat: parseFloat(document.getElementById('location-lat').value),
+              lon: parseFloat(document.getElementById('location-lon').value),
+              addedAt: new Date().getTime()
+            };
+            
+            await addLocation(location);
+            
+            // Komunikat o powodzeniu
+            alert('Lokalizacja dodana do ulubionych!');
+            
+            // Odśwież listę lokalizacji
+            await loadSavedLocations();
+          } catch (error) {
+            // Pokaż komunikat o błędzie
+            alert(`Błąd podczas dodawania lokalizacji: ${error.message}`);
+            console.error(error);
+          }
+        });
+    </script>
+</body>
+</html>
