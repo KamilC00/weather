@@ -2,7 +2,7 @@
   "name": "Weather App",
   "short_name": "Weather",
   "description": "Aplikacja pogodowa z zapisem ulubionych lokalizacji",
-  "start_url": "/index.html",
+  "start_url": "/weather/index.html",
   "display": "standalone",
   "background_color": "#3498db",
   "theme_color": "#3498db",
